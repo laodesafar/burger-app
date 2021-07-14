@@ -71,6 +71,7 @@ module.exports = {
       pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       bounce: "bounce 1s infinite",
       bump: "bump 300ms ease-out",
+      mealsAppear: "mealsAppear 1s ease-out forwards",
     },
     backdropBlur: (theme) => theme("blur"),
     backdropBrightness: (theme) => theme("brightness"),
@@ -504,6 +505,16 @@ module.exports = {
         },
         "50%": {
           transform: "scale(1.15)",
+        },
+      },
+      mealsAppear: {
+        from: {
+          opacity: "0",
+          transform: "translateY(3rem)",
+        },
+        to: {
+          opacity: "1",
+          transform: "translateY(0)",
         },
       },
     },
