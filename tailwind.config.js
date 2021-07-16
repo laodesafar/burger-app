@@ -63,6 +63,7 @@ module.exports = {
       72: "18rem",
       80: "20rem",
       96: "24rem",
+      200: "40rem",
     },
     animation: {
       none: "none",
@@ -71,7 +72,8 @@ module.exports = {
       pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       bounce: "bounce 1s infinite",
       bump: "bump 300ms ease-out",
-      mealsAppear: "mealsAppear 1s ease-out forwards",
+      mealsAppear: "mealsAppear 300ms ease-out forwards",
+      slideDown: "slideDown 300ms ease-out forwards",
     },
     backdropBlur: (theme) => theme("blur"),
     backdropBrightness: (theme) => theme("brightness"),
@@ -465,6 +467,9 @@ module.exports = {
       "-2/4": "-50%",
       "-3/4": "-75%",
       "-full": "-100%",
+      "20v": "20vh",
+      "5%": "5%",
+      cal: "calc(50% - 20rem)",
     }),
     keyframes: {
       spin: {
@@ -511,6 +516,16 @@ module.exports = {
         from: {
           opacity: "0",
           transform: "translateY(3rem)",
+        },
+        to: {
+          opacity: "1",
+          transform: "translateY(0)",
+        },
+      },
+      slideDown: {
+        from: {
+          opacity: "0",
+          transform: "translateY(-3rem)",
         },
         to: {
           opacity: "1",
