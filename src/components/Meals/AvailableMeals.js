@@ -4,12 +4,19 @@ import Card from "../UI/Card";
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState();
 
   useEffect(() => {
     const fetchMeals = async () => {
       const response = await fetch(
         "https://react-47dc7-default-rtdb.asia-southeast1.firebasedatabase.app/meals.json"
       );
+
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
+
       const responseData = await response.json();
 
       const loadedMeals = [];
@@ -24,10 +31,26 @@ const AvailableMeals = () => {
       }
 
       setMeals(loadedMeals);
+      setIsLoading(false);
     };
 
-    fetchMeals();
+    fetchMeals().catch((error) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
   }, []);
+
+  if (isLoading) {
+    return <p className="text-center text-blue-500 ">Loading...</p>;
+  }
+
+  if (httpError) {
+    return (
+      <section className="text-center text-red-500">
+        <p>{httpError}</p>
+      </section>
+    );
+  }
 
   const mealsList = meals.map((meal) => (
     <MealItem
